@@ -2,6 +2,8 @@ import re
 import pandas as pd
 import numpy as np
 
+
+
 def comparar (df1, df2):    
     result = (df1 == df2)
     # print(result.shape)
@@ -27,7 +29,7 @@ dfrand_t = pd.DataFrame(list(zip(lst, lst,lst)),columns=list('123'))
 dfrand_n1 = pd.DataFrame(np.random.randint(0,100,size=(100, 7)), columns=list('4567890'))
 dfrand_n2 = pd.DataFrame(np.random.randint(0,100,size=(100, 7)), columns=list('4567890'))
 
-#Creamos el dataframe resultante
+#Creamos los dataframes resultantes
 
 dfrand_1 = pd.concat([dfrand_t,dfrand_n1], axis=1)
 dfrand_2 = pd.concat([dfrand_t,dfrand_n2], axis=1)
@@ -39,6 +41,6 @@ dfrand_2 = pd.concat([dfrand_t,dfrand_n2], axis=1)
 
 comparacion = comparar(dfrand_1, dfrand_2)
 # freq = comparacion.groupby(['1', '6']).size() 
-# print(comparacion)
+print(comparacion)
 
 #print(df_rand_2.head(200))
