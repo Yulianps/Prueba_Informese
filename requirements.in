@@ -4,3 +4,4 @@ et-xmlfile
 openpyxl
 matplotlib
 click
+functools

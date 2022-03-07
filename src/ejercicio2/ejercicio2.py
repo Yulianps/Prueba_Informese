@@ -4,7 +4,7 @@ import json
 
 def process_ejercicio2(input_path: str):
     
-    #Leemos el archivo de texto ejercicio2_b1 en el path donde se haya descargado 
+    #Leemos el archivo de texto ejercicio2_b1 
     with open(input_path,'r') as f: 
         data = json.loads(f.read())
     dfjson = pd.json_normalize(data, record_path =['ventas'])
@@ -17,10 +17,9 @@ def process_ejercicio2(input_path: str):
 
     quaters = dfjson["tiempo"].str.split('-', expand=True)
     quaters.columns = ['Año', 'Cuartos']
-    print(dfjson)
+    # print(dfjson)
 
     dfjson = pd.concat([quaters, dfjson], axis=1)
-    print(dfjson)
 
     #Se agrupa por el campo Cuarto para visualizar el comportamiento del total de las ventas en cada cuarto
 
@@ -30,17 +29,23 @@ def process_ejercicio2(input_path: str):
 
     #Por eso se procede a graficar por separado los datos de las estadísticas que sí generen un gráfica útil para analizar
 
-    dfjson_quaters = dfjson.groupby(['Cuartos'])['ValorVenta'].sum()
-    print(dfjson_quaters)
-
-    plot_sum = dfjson_quaters.plot.bar()
-
+    dfjson_quaters_mean = dfjson.groupby(['Cuartos'])['ValorVenta'].mean()
+    
+    #Gráfica promedio de ventas por trimestre
+    plot_mean = dfjson_quaters_mean.plot.bar()
+    plt.ylabel('Ventas')
+    plt.xlabel('Cuartos')
+    plt.title('Promedio de Ventas Trimestrales')
     plt.show()
 
 
-    # dfjson_total = dfjson.groupby(['Cuarto'])['ValorVenta'].count()
+    #Gráfica Suma de ventas por trimestre
+    dfjson_quaters_sum = dfjson.groupby(['Cuartos'])['ValorVenta'].sum()
 
-    # print(dfjson_total)
-    
+    plot_mean = dfjson_quaters_sum.plot.bar()
+    plt.ylabel('Ventas')
+    plt.xlabel('Cuartos')
+    plt.title('Suma de Ventas Trimestrales')
+    plt.show()
     return
 

@@ -4,7 +4,6 @@ import csv
 
 def process_ejercicio1 (input_path1: str, input_path2: str, output_path: str):
     
-    #Leemos la BD Excel ejercicio1 en el path donde se haya descargado dentro de la carpeta inputs 
     #Al hacer inspección inicial de la BD encontramos que la columna E contiene datos indeseados y no se carga en el DF
     
     exceldf = pd.read_excel(input_path1, usecols = 'A:D')
@@ -21,8 +20,8 @@ def process_ejercicio1 (input_path1: str, input_path2: str, output_path: str):
 
     #Renombramos la columna cc_cliente     
     exceldf.rename(columns={'cc_cliente': 'CEDULA'}, inplace=True)
-
-    # 
+    
+    #Agrupamos por el campo Cédula y Tipo de pedido haciendo un count en el campo numero de pedido
     grouped_excel_data = exceldf.groupby(['CEDULA', 'Tipo de pedido'], as_index=False)['numero de pedido' ].count()
     grouped_excel_data.rename(columns={'numero de pedido': 'Cantidad número de pedido'}, inplace=True)
 

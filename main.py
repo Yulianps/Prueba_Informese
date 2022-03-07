@@ -6,6 +6,11 @@ from src.ejercicio1.ejercicio1 import process_ejercicio1
 from src.ejercicio2.ejercicio2 import process_ejercicio2
 from src.ejercicio3.ejercicio3 import process_ejercicio3
 
+
+# Ejemplo de como ejecutarlo:
+# python.exe .\main.py --ejercicio=ejercicio1
+
+
 # Definimos el job para el ejercicio1
 
 
